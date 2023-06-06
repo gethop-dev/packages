@@ -1,7 +1,7 @@
 (set-env!
  :resource-paths #{"resources"}
  :dependencies '[[cljsjs/boot-cljsjs "0.10.5" :scope "test"]
-                 [dev.gethop/cljsjs.floating-ui-core "1.2.6-0"]]
+                 [dev.gethop/cljsjs.floating-ui-core "1.2.6-1"]]
  :wagons       '[[s3-wagon-private "1.3.4"]]
  :repositories #(conj % ["private-repo"
                          {:url "s3p://mvn-private-repository/releases"
@@ -10,7 +10,7 @@
 (require '[cljsjs.boot-cljsjs.packaging :refer :all])
 
 (def +lib-version+ "1.2.9")
-(def +version+ (str +lib-version+ "-0"))
+(def +version+ (str +lib-version+ "-1"))
 
 (task-options!
  pom  {:project     'dev.gethop/cljsjs.floating-ui-dom
@@ -30,7 +30,8 @@
                               :file-min #"cljsjs/floating-ui-dom/production/floating-ui-dom.min.inc.js"
                               :provides ["@floating-ui/dom"]
                               :requires ["@floating-ui/core"]
-                              :global-exports '{"@floating-ui/dom" FloatingUIDOM}}])
+                              :global-exports '{"@floating-ui/dom" FloatingUIDOM}}]
+              :externs [#"floating-ui-dom.ext.js"])
    (pom)
    (jar)
    (validate)))

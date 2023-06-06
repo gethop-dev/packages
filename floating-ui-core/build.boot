@@ -9,7 +9,7 @@
 (require '[cljsjs.boot-cljsjs.packaging :refer :all])
 
 (def +lib-version+ "1.2.6")
-(def +version+ (str +lib-version+ "-0"))
+(def +version+ (str +lib-version+ "-1"))
 
 (task-options!
  pom  {:project     'dev.gethop/cljsjs.floating-ui-core
@@ -28,7 +28,8 @@
    (deps-cljs :foreign-libs [{:file #"cljsjs/floating-ui-core/development/floating-ui-core.inc.js"
                               :file-min #"cljsjs/floating-ui-core/production/floating-ui-core.min.inc.js"
                               :provides ["@floating-ui/core"]
-                              :global-exports '{"@floating-ui/core" FloatingUICore}}])
+                              :global-exports '{"@floating-ui/core" FloatingUICore}}]
+              :externs [#"floating-ui-core.ext.js"])
    (pom)
    (jar)
    (validate)))

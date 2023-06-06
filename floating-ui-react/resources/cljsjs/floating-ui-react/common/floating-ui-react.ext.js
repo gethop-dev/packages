@@ -76,3 +76,14 @@ var FloatingUIReact = {
 /**********************************************************************
  * End Generated Extern for FloatingUIReact
 /**********************************************************************/
+
+/**********************************************************************
+ * Start for manual externs
+/**********************************************************************/
+Object.prototype.setReference = function() {};
+Object.prototype.setFloating = function() {};
+Object.prototype.getReferenceProps = function () {};
+Object.prototype.getFloatingProps = function() {};
+/**********************************************************************
+ * End for manual externs
+/**********************************************************************/

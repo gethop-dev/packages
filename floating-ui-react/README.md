@@ -2,6 +2,6 @@
 
 [](dependency)
 ```clojure
-[dev.gethop/cljsjs.floating-ui-react "0.24.2-0"] ;; latest release
+[dev.gethop/cljsjs.floating-ui-react "0.24.2-1"] ;; latest release
 ```
 [](/dependency)

@@ -3,7 +3,7 @@
  :dependencies '[[cljsjs/boot-cljsjs "0.10.5" :scope "test"]
                  [cljsjs/react "17.0.1-0"]
                  [cljsjs/react-dom "17.0.1-0"]
-                 [dev.gethop/cljsjs.floating-ui-react-dom "2.0.0-0"]]
+                 [dev.gethop/cljsjs.floating-ui-react-dom "2.0.0-1"]]
  :wagons       '[[s3-wagon-private "1.3.4"]]
  :repositories #(conj % ["private-repo"
                          {:url "s3p://mvn-private-repository/releases"
@@ -12,7 +12,7 @@
 (require '[cljsjs.boot-cljsjs.packaging :refer :all])
 
 (def +lib-version+ "0.24.2")
-(def +version+ (str +lib-version+ "-0"))
+(def +version+ (str +lib-version+ "-1"))
 
 (task-options!
  pom  {:project     'dev.gethop/cljsjs.floating-ui-react
@@ -32,7 +32,8 @@
                               :file-min #"cljsjs/floating-ui-react/production/floating-ui-react.min.inc.js"
                               :provides ["@floating-ui/react"]
                               :requires ["react" "react-dom" "@floating-ui/react-dom"]
-                              :global-exports '{"@floating-ui/react" FloatingUIReact}}])
+                              :global-exports '{"@floating-ui/react" FloatingUIReact}}]
+              :externs [#"floating-ui-react.ext.js"])
    (pom)
    (jar)
    (validate)))
