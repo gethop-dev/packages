@@ -2,14 +2,18 @@
   :resource-paths #{"resources"}
   :dependencies '[[cljsjs/boot-cljsjs "0.10.5"  :scope "test"]
                   [cljsjs/react "15.3.0-0"]
-                  [cljsjs/classnames "2.2.3-0"]])
+                  [cljsjs/classnames "2.2.3-0"]]
+  :wagons       '[[s3-wagon-private "1.3.4"]]
+  :repositories #(conj % ["private-repo"
+                          {:url "s3p://mvn-private-repository/releases"
+                           :no-auth true}]))
 
-(def +lib-version+ "1.0.0-beta2")
+(def +lib-version+ "1.4.0")
 (def +version+ (str +lib-version+ "-0"))
-(def +lib-folder+ (format "react-date-range-%s" +lib-version+))
+(def +lib-folder+ (format "react-date-range-release-%s" +lib-version+))
 
 (task-options!
- pom  {:project     'cljsjs/react-date-range
+ pom  {:project     'dev.gethop/cljsjs.react-date-range
        :version     +version+
        :description "A React component for choosing dates and date ranges"
        :url         "https://github.com/Adphorus/react-date-range"
@@ -22,7 +26,7 @@
          '[clojure.java.io :as io]
          '[boot.util :refer [sh]])
 
-(def url (format "https://github.com/Adphorus/react-date-range/archive/v%s.zip" +lib-version+))
+(def url (format "https://github.com/hypeserver/react-date-range/archive/refs/tags/release/%s.zip" +lib-version+))
 
 (deftask download-react-date-range []
          (download :url url
@@ -50,6 +54,7 @@
       (binding [*sh-dir* (str (io/file tmp +lib-folder+))]
         ((sh "npm" "install" "--ignore-scripts"))
         ((sh "npm" "install" "webpack"))
+        ((sh "npm" "install" "webpack-cli@4.10.0"))
         ((sh "npm" "run" "build"))
         ((sh "./node_modules/.bin/webpack" "--config" "webpack-cljsjs.config.js")))
       (-> fileset (boot/add-resource tmp) boot/commit!))))

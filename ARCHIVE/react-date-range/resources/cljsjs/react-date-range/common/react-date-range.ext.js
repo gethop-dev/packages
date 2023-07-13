@@ -9,36 +9,45 @@
 var ReactDateRange = {
   "Calendar": {
     "defaultProps": {
+      "ariaLabels": {},
+      "calendarFocus": {},
       "classNames": {},
       "color": {},
       "dateDisplayFormat": {},
+      "dayDisplayFormat": {},
       "direction": {},
       "disabledDates": {},
+      "disabledDay": function () {},
       "displayMode": {},
       "dragSelectionEnabled": {},
+      "editableDateInputs": {},
+      "endDatePlaceholder": {},
+      "fixedHeight": {},
       "focusedRange": {},
       "locale": {
+        "code": {},
         "formatDistance": function () {},
-        "formatLong": function () {},
+        "formatLong": {
+          "date": function () {},
+          "dateTime": function () {},
+          "time": function () {}
+        },
         "formatRelative": function () {},
         "localize": {
+          "day": function () {},
+          "dayPeriod": function () {},
+          "era": function () {},
           "month": function () {},
-          "months": function () {},
           "ordinalNumber": function () {},
-          "timeOfDay": function () {},
-          "timesOfDay": function () {},
-          "weekday": function () {},
-          "weekdays": function () {}
+          "quarter": function () {}
         },
         "match": {
+          "day": function () {},
+          "dayPeriod": function () {},
+          "era": function () {},
           "month": function () {},
-          "months": function () {},
           "ordinalNumber": function () {},
-          "ordinalNumbers": function () {},
-          "timeOfDay": function () {},
-          "timesOfDay": function () {},
-          "weekday": function () {},
-          "weekdays": function () {}
+          "quarter": function () {}
         },
         "options": {
           "firstWeekContainsDate": {},
@@ -49,6 +58,7 @@ var ReactDateRange = {
       "minDate": {},
       "monthDisplayFormat": {},
       "months": {},
+      "preventSnapRefocus": {},
       "rangeColors": {},
       "ranges": {},
       "scroll": {
@@ -57,9 +67,17 @@ var ReactDateRange = {
       "showDateDisplay": {},
       "showMonthAndYearPickers": {},
       "showMonthArrow": {},
-      "showPreview": {}
+      "showPreview": {},
+      "startDatePlaceholder": {},
+      "weekdayDisplayFormat": {}
     },
     "propTypes": {
+      "ariaLabels": {
+        "isRequired": function () {}
+      },
+      "calendarFocus": {
+        "isRequired": function () {}
+      },
       "className": {
         "isRequired": function () {}
       },
@@ -75,16 +93,31 @@ var ReactDateRange = {
       "dateDisplayFormat": {
         "isRequired": function () {}
       },
+      "dayDisplayFormat": {
+        "isRequired": function () {}
+      },
       "direction": {
         "isRequired": function () {}
       },
       "disabledDates": {
         "isRequired": function () {}
       },
+      "disabledDay": {
+        "isRequired": function () {}
+      },
       "displayMode": {
         "isRequired": function () {}
       },
       "dragSelectionEnabled": {
+        "isRequired": function () {}
+      },
+      "editableDateInputs": {
+        "isRequired": function () {}
+      },
+      "endDatePlaceholder": {
+        "isRequired": function () {}
+      },
+      "fixedHeight": {
         "isRequired": function () {}
       },
       "focusedRange": {
@@ -123,6 +156,9 @@ var ReactDateRange = {
       "onShownDateChange": {
         "isRequired": function () {}
       },
+      "preventSnapRefocus": {
+        "isRequired": function () {}
+      },
       "preview": {
         "isRequired": function () {}
       },
@@ -150,7 +186,16 @@ var ReactDateRange = {
       "shownDate": {
         "isRequired": function () {}
       },
+      "startDatePlaceholder": {
+        "isRequired": function () {}
+      },
       "updateRange": {
+        "isRequired": function () {}
+      },
+      "weekStartsOn": {
+        "isRequired": function () {}
+      },
+      "weekdayDisplayFormat": {
         "isRequired": function () {}
       }
     }
@@ -161,9 +206,16 @@ var ReactDateRange = {
       "disabledDates": {},
       "moveRangeOnFirstSelection": {},
       "rangeColors": {},
-      "ranges": {}
+      "ranges": {},
+      "retainEndDateOnFirstSelection": {}
     },
     "propTypes": {
+      "ariaLabels": {
+        "isRequired": function () {}
+      },
+      "calendarFocus": {
+        "isRequired": function () {}
+      },
       "className": {
         "isRequired": function () {}
       },
@@ -179,16 +231,31 @@ var ReactDateRange = {
       "dateDisplayFormat": {
         "isRequired": function () {}
       },
+      "dayDisplayFormat": {
+        "isRequired": function () {}
+      },
       "direction": {
         "isRequired": function () {}
       },
       "disabledDates": {
         "isRequired": function () {}
       },
+      "disabledDay": {
+        "isRequired": function () {}
+      },
       "displayMode": {
         "isRequired": function () {}
       },
       "dragSelectionEnabled": {
+        "isRequired": function () {}
+      },
+      "editableDateInputs": {
+        "isRequired": function () {}
+      },
+      "endDatePlaceholder": {
+        "isRequired": function () {}
+      },
+      "fixedHeight": {
         "isRequired": function () {}
       },
       "focusedRange": {
@@ -230,6 +297,9 @@ var ReactDateRange = {
       "onShownDateChange": {
         "isRequired": function () {}
       },
+      "preventSnapRefocus": {
+        "isRequired": function () {}
+      },
       "preview": {
         "isRequired": function () {}
       },
@@ -237,6 +307,9 @@ var ReactDateRange = {
         "isRequired": function () {}
       },
       "ranges": {
+        "isRequired": function () {}
+      },
+      "retainEndDateOnFirstSelection": {
         "isRequired": function () {}
       },
       "scroll": {
@@ -257,7 +330,16 @@ var ReactDateRange = {
       "shownDate": {
         "isRequired": function () {}
       },
+      "startDatePlaceholder": {
+        "isRequired": function () {}
+      },
       "updateRange": {
+        "isRequired": function () {}
+      },
+      "weekStartsOn": {
+        "isRequired": function () {}
+      },
+      "weekdayDisplayFormat": {
         "isRequired": function () {}
       }
     }
@@ -265,6 +347,12 @@ var ReactDateRange = {
   "DateRangePicker": {
     "defaultProps": {},
     "propTypes": {
+      "ariaLabels": {
+        "isRequired": function () {}
+      },
+      "calendarFocus": {
+        "isRequired": function () {}
+      },
       "className": {
         "isRequired": function () {}
       },
@@ -280,16 +368,31 @@ var ReactDateRange = {
       "dateDisplayFormat": {
         "isRequired": function () {}
       },
+      "dayDisplayFormat": {
+        "isRequired": function () {}
+      },
       "direction": {
         "isRequired": function () {}
       },
       "disabledDates": {
         "isRequired": function () {}
       },
+      "disabledDay": {
+        "isRequired": function () {}
+      },
       "displayMode": {
         "isRequired": function () {}
       },
       "dragSelectionEnabled": {
+        "isRequired": function () {}
+      },
+      "editableDateInputs": {
+        "isRequired": function () {}
+      },
+      "endDatePlaceholder": {
+        "isRequired": function () {}
+      },
+      "fixedHeight": {
         "isRequired": function () {}
       },
       "focusedRange": {
@@ -340,6 +443,9 @@ var ReactDateRange = {
       "onShownDateChange": {
         "isRequired": function () {}
       },
+      "preventSnapRefocus": {
+        "isRequired": function () {}
+      },
       "preview": {
         "isRequired": function () {}
       },
@@ -350,6 +456,9 @@ var ReactDateRange = {
         "isRequired": function () {}
       },
       "renderStaticRangeLabel": {
+        "isRequired": function () {}
+      },
+      "retainEndDateOnFirstSelection": {
         "isRequired": function () {}
       },
       "scroll": {
@@ -370,10 +479,19 @@ var ReactDateRange = {
       "shownDate": {
         "isRequired": function () {}
       },
+      "startDatePlaceholder": {
+        "isRequired": function () {}
+      },
       "staticRanges": {
         "isRequired": function () {}
       },
       "updateRange": {
+        "isRequired": function () {}
+      },
+      "weekStartsOn": {
+        "isRequired": function () {}
+      },
+      "weekdayDisplayFormat": {
         "isRequired": function () {}
       }
     }

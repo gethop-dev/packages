@@ -2,7 +2,7 @@
 
 [](dependency)
 ```clojure
-[cljsjs/react-date-range "1.0.0-beta2-0"] ;; latest release
+[dev.gethop/cljsjs.react-date-range "1.4.0-0"] ;; latest release
 ```
 [](/dependency)
 
