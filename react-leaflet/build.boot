@@ -1,5 +1,9 @@
 (set-env!
-  :resource-paths #{"resources"}
+ :resource-paths #{"resources"}
+ :wagons       '[[s3-wagon-private "1.3.4"]]
+ :repositories #(conj % ["private-repo"
+                         {:url "s3p://biotz-mvn-private-repository/releases"
+                          :no-auth true}])
   :dependencies '[[cljsjs/boot-cljsjs "0.10.5" :scope "test"]
                   [cljsjs/react "17.0.1-0"]
                   [cljsjs/react-dom "17.0.1-0"]
@@ -8,7 +12,7 @@
 (require '[cljsjs.boot-cljsjs.packaging :refer :all])
 
 (def +lib-version+ "3.2.5")
-(def +version+ (str +lib-version+ "-0"))
+(def +version+ (str +lib-version+ "-m4"))
 
 (task-options!
  pom  {:project     'cljsjs/react-leaflet
@@ -20,13 +24,18 @@
 
 (deftask package []
   (comp
-    (download :url      (str "https://unpkg.com/react-leaflet@" +lib-version+ "/umd/react-leaflet.js")
-              :target   "cljsjs/react-leaflet/development/react-leaflet.inc.js")
-    (download :url      (str "https://unpkg.com/react-leaflet@" +lib-version+ "/umd/react-leaflet.min.js")
-              :target   "cljsjs/react-leaflet/production/react-leaflet.min.inc.js")
-    (deps-cljs :provides ["react-leaflet" "cljsjs.react-leaflet"]
-               :requires ["leaflet" "react" "react-dom"]
-               :global-exports '{react-leaflet ReactLeaflet})
-    (pom)
-    (jar)
-    (validate)))
+   (run-commands :commands [["npm" "install" "--include-dev"]
+                            ["npm" "run" "build:dev"]
+                            ["npm" "run" "build:prod"]
+                            ["ls"]
+                            ["rm" "-rf" "./node_modules"]])
+   (sift :move {#".*react-leaflet.inc.js"     "cljsjs/react-leaflet/development/react-leaflet.inc.js"
+                #".*react-leaflet.min.inc.js" "cljsjs/react-leaflet/production/react-leaflet.min.inc.js"})
+   (sift :include #{#"^cljsjs"})
+   (deps-cljs :provides ["react-leaflet" "cljsjs.react-leaflet" "@react-leaflet/core"]
+              :requires ["leaflet" "react" "react-dom"]
+              :global-exports '{react-leaflet ReactLeaflet
+                                "@react-leaflet/core" ReactLeafletCore})
+   (pom)
+   (jar)
+   (validate)))
